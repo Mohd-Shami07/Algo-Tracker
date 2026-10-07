@@ -6,6 +6,7 @@ An offline-first DSA practice tracker built with plain HTML, CSS, and JavaScript
 
 - Log solved problems with topic, difficulty, date, time, and a personal takeaway
 - View weekly activity, practice streak, difficulty mix, topic progress, and a searchable-by-filter problem log
+- Review separate problem lists for the last 7 days and the current month
 - Get study suggestions based on your logged topics, recent activity, and difficulty mix
 - Store progress in your browser's local storage; no account or API key is required
 - Use the demo sign-in screen to enter and leave the tracker

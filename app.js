@@ -98,6 +98,10 @@ const elements = {
   activity: $("#activity-chart"),
   activityCount: $("#activity-count"),
   weekInsight: $("#week-insight"),
+  weekProblemCount: $("#week-problem-count"),
+  weekProblemList: $("#week-problem-list"),
+  monthProblemCount: $("#month-problem-count"),
+  monthProblemList: $("#month-problem-list"),
   table: $("#problem-table"),
   entryCount: $("#entry-count"),
   empty: $("#empty-state"),
@@ -178,6 +182,13 @@ function getWeeklyProblems() {
   start.setHours(0, 0, 0, 0);
   const startDate = formatDate(start);
   const today = formatDate(new Date());
+  return state.problems.filter((problem) => problem.date >= startDate && problem.date <= today);
+}
+
+function getMonthlyProblems() {
+  const now = new Date();
+  const startDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-01`;
+  const today = formatDate(now);
   return state.problems.filter((problem) => problem.date >= startDate && problem.date <= today);
 }
 
@@ -266,6 +277,37 @@ function renderActivity() {
   else elements.weekInsight.textContent = "Your next solved problem starts a streak.";
 }
 
+function renderPeriodList(problems, countElement, listElement, periodLabel) {
+  const sorted = sortedProblems(problems);
+  countElement.textContent = `${sorted.length} ${sorted.length === 1 ? "QUESTION" : "QUESTIONS"}`;
+  if (sorted.length === 0) {
+    listElement.innerHTML = `<p class="period-empty">No problems logged ${periodLabel} yet.</p>`;
+    return;
+  }
+
+  const visible = sorted.slice(0, 5);
+  listElement.innerHTML = visible.map((problem) => `
+    <div class="period-problem">
+      <span class="period-problem-mark">⌘</span>
+      <span class="period-problem-copy">
+        <strong>${escapeHtml(problem.name)}</strong>
+        <small>${escapeHtml(problem.topic)} · ${dateLabel(problem.date, { month: "short", day: "numeric" })}</small>
+      </span>
+      <span class="difficulty ${problem.difficulty.toLowerCase()}">${problem.difficulty}</span>
+    </div>`).join("");
+
+  if (sorted.length > visible.length) {
+    listElement.insertAdjacentHTML("beforeend", `<a class="period-more" href="#problems">+ ${sorted.length - visible.length} more · View problem log ↗</a>`);
+  }
+}
+
+function renderPeriodSections() {
+  const monthName = new Date().toLocaleDateString(undefined, { month: "long" });
+  $("#month-heading").textContent = `${monthName} problems`;
+  renderPeriodList(getWeeklyProblems(), elements.weekProblemCount, elements.weekProblemList, "in the last 7 days");
+  renderPeriodList(getMonthlyProblems(), elements.monthProblemCount, elements.monthProblemList, "this month");
+}
+
 function filteredProblems() {
   return sortedProblems(state.problems).filter((problem) =>
     (state.topicFilter === "all" || problem.topic === state.topicFilter) &&
@@ -326,6 +368,7 @@ function render() {
   renderStats();
   renderTopics();
   renderActivity();
+  renderPeriodSections();
   renderProblemTable();
   renderCoach();
 }
@@ -382,6 +425,7 @@ function initialize() {
 
   $("#open-problem-form").addEventListener("click", openDialog);
   $("#empty-add").addEventListener("click", openDialog);
+  document.querySelectorAll(".period-add-button").forEach((button) => button.addEventListener("click", openDialog));
   $("#close-dialog").addEventListener("click", closeDialog);
   $("#cancel-dialog").addEventListener("click", closeDialog);
   elements.form.addEventListener("submit", saveProblem);

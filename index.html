@@ -151,6 +151,25 @@
           </article>
         </section>
 
+        <section class="period-sections" aria-label="Problems by time period">
+          <article class="panel period-panel">
+            <div class="section-heading period-heading">
+              <div><p class="overline">WEEKLY RECAP</p><h2>Last 7 days</h2></div>
+              <span class="period-count" id="week-problem-count">0 QUESTIONS</span>
+            </div>
+            <div id="week-problem-list" class="period-problem-list"></div>
+            <button class="period-add-button" type="button">＋ Log a problem</button>
+          </article>
+          <article class="panel period-panel">
+            <div class="section-heading period-heading">
+              <div><p class="overline">MONTHLY RECAP</p><h2 id="month-heading">This month</h2></div>
+              <span class="period-count" id="month-problem-count">0 QUESTIONS</span>
+            </div>
+            <div id="month-problem-list" class="period-problem-list"></div>
+            <button class="period-add-button" type="button">＋ Log a problem</button>
+          </article>
+        </section>
+
         <section class="panel recent-panel" id="problems">
           <div class="section-heading recent-heading"><div><p class="overline">THE WORK YOU PUT IN</p><h2>Problem log <span class="entry-count" id="entry-count">0</span></h2></div><div class="list-controls"><label class="sr-only" for="topic-filter">Filter by topic</label><select id="topic-filter"><option value="all">All topics</option></select><label class="sr-only" for="difficulty-filter">Filter by difficulty</label><select id="difficulty-filter"><option value="all">All levels</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select></div></div>
           <div class="table-scroll"><table><thead><tr><th>PROBLEM</th><th>TOPIC</th><th>DIFFICULTY</th><th>DATE SOLVED</th><th>TIME</th></tr></thead><tbody id="problem-table"></tbody></table></div>

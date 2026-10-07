@@ -166,6 +166,21 @@ h1 span { color: #82917e; }
 .chart-legend strong { color: #667464; font: 9px var(--mono); }
 .week-note { display: flex; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #eff0eb; color: #848e84; font-size: 9px; }
 .note-icon { color: #8eae71; font-size: 13px; }
+.period-sections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 15px; }
+.period-panel { min-width: 0; padding: 19px 21px 15px; }
+.period-heading { align-items: center; }
+.period-count { color: #879582; font: 8px var(--mono); letter-spacing: .5px; }
+.period-problem-list { display: grid; align-content: start; gap: 0; min-height: 102px; margin-top: 12px; }
+.period-problem { min-width: 0; display: flex; align-items: center; gap: 9px; padding: 9px 0; border-bottom: 1px solid #f0f1ed; }
+.period-problem-mark { display: grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border-radius: 5px; background: #f0f4ea; color: #788d66; font: 10px var(--mono); }
+.period-problem-copy { min-width: 0; display: grid; flex: 1; gap: 3px; }
+.period-problem-copy strong { overflow: hidden; color: #344137; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.period-problem-copy small { overflow: hidden; color: #929c92; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.period-problem .difficulty { flex: 0 0 auto; font-size: 8px; }
+.period-empty { align-self: center; margin: 0; color: #8a948c; font-size: 10px; }
+.period-more { padding: 9px 0 2px; color: #70816d; font-size: 9px; font-weight: 700; }
+.period-add-button { margin-top: 12px; padding: 0; border: 0; background: transparent; color: #66834f; cursor: pointer; font-size: 10px; font-weight: 700; }
+.period-add-button:hover { color: #405d31; }
 .recent-panel { margin-top: 15px; padding: 19px 21px 0; }
 .recent-heading { align-items: center; margin-bottom: 15px; }
 .entry-count { display: inline-grid; min-width: 20px; height: 20px; place-items: center; margin-left: 4px; border-radius: 12px; background: #f0f3ec; color: #758373; font: 9px var(--mono); vertical-align: 2px; }
@@ -297,6 +312,7 @@ tbody tr:last-child td { border-bottom: 0; }
   .stat-accuracy { grid-column: 1 / -1; min-height: 130px; }
   .difficulty-counts { gap: 26px; }
   .lower-grid { grid-template-columns: 1fr; gap: 10px; }
+  .period-sections { grid-template-columns: 1fr; gap: 10px; }
   .coach-card { gap: 10px; padding: 20px 17px; }
   .coach-art { width: 68px; flex-basis: 68px; transform: scale(.7); margin: 0 -5px; }
   .coach-content h2 { font-size: 17px; }
