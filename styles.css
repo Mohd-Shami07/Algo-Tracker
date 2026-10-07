@@ -174,8 +174,12 @@ h1 span { color: #82917e; }
 .period-problem { min-width: 0; display: flex; align-items: center; gap: 9px; padding: 9px 0; border-bottom: 1px solid #f0f1ed; }
 .period-problem-mark { display: grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border-radius: 5px; background: #f0f4ea; color: #788d66; font: 10px var(--mono); }
 .period-problem-copy { min-width: 0; display: grid; flex: 1; gap: 3px; }
-.period-problem-copy strong { overflow: hidden; color: #344137; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.problem-platform-link { color: #344137; font-size: 10px; font-weight: 700; text-decoration: none; }
+.problem-platform-link:hover { color: #678b4b; text-decoration: underline; text-underline-offset: 2px; }
+.period-problem-copy .problem-platform-link { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .period-problem-copy small { overflow: hidden; color: #929c92; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.period-problem-meta { display: grid; justify-items: end; gap: 4px; }
+.period-problem-meta > small { color: #929c92; font-size: 8px; }
 .period-problem .difficulty { flex: 0 0 auto; font-size: 8px; }
 .period-empty { align-self: center; margin: 0; color: #8a948c; font-size: 10px; }
 .period-more { padding: 9px 0 2px; color: #70816d; font-size: 9px; font-weight: 700; }

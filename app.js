@@ -3,6 +3,7 @@
 const STORAGE_KEY = "algotrack-dsa-progress-v1";
 const SESSION_KEY = "algotrack-demo-user";
 const TARGET_PROBLEMS = 75;
+const PLATFORMS = ["LeetCode", "GeeksforGeeks", "Codeforces", "HackerRank"];
 const TOPICS = [
   "Arrays & Hashing",
   "Two Pointers",
@@ -21,12 +22,12 @@ const TOPICS = [
   "Bit Manipulation"
 ];
 const SEED_PROBLEMS = [
-  { id: "seed-1", name: "Contains Duplicate", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-6), time: 12, note: "A set makes duplicate checks constant time." },
-  { id: "seed-2", name: "Valid Anagram", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-5), time: 18, note: "Frequency counts keep the comparison linear." },
-  { id: "seed-3", name: "Valid Parentheses", topic: "Stack", difficulty: "Easy", date: dateOffset(-4), time: 21, note: "Last opened bracket must close first." },
-  { id: "seed-4", name: "Best Time to Buy and Sell Stock", topic: "Sliding Window", difficulty: "Easy", date: dateOffset(-3), time: 24, note: "Track the minimum price seen so far." },
-  { id: "seed-5", name: "Binary Search", topic: "Binary Search", difficulty: "Easy", date: dateOffset(-2), time: 16, note: "Keep the search interval invariant clear." },
-  { id: "seed-6", name: "Two Sum", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-1), time: 10, note: "Store complements as you scan once." }
+  { id: "seed-1", name: "Contains Duplicate", platform: "LeetCode", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-6), time: 12, note: "A set makes duplicate checks constant time." },
+  { id: "seed-2", name: "Valid Anagram", platform: "LeetCode", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-5), time: 18, note: "Frequency counts keep the comparison linear." },
+  { id: "seed-3", name: "Valid Parentheses", platform: "LeetCode", topic: "Stack", difficulty: "Easy", date: dateOffset(-4), time: 21, note: "Last opened bracket must close first." },
+  { id: "seed-4", name: "Best Time to Buy and Sell Stock", platform: "LeetCode", topic: "Sliding Window", difficulty: "Easy", date: dateOffset(-3), time: 24, note: "Track the minimum price seen so far." },
+  { id: "seed-5", name: "Binary Search", platform: "LeetCode", topic: "Binary Search", difficulty: "Easy", date: dateOffset(-2), time: 16, note: "Keep the search interval invariant clear." },
+  { id: "seed-6", name: "Two Sum", platform: "LeetCode", topic: "Arrays & Hashing", difficulty: "Easy", date: dateOffset(-1), time: 10, note: "Store complements as you scan once." }
 ];
 
 function dateOffset(days) {
@@ -47,6 +48,7 @@ function validProblem(problem) {
     problem &&
     typeof problem.id === "string" &&
     typeof problem.name === "string" &&
+    (problem.platform === undefined || PLATFORMS.includes(problem.platform)) &&
     typeof problem.topic === "string" &&
     TOPICS.includes(problem.topic) &&
     ["Easy", "Medium", "Hard"].includes(problem.difficulty) &&
@@ -67,7 +69,10 @@ function loadProblems() {
     if (!Array.isArray(parsed) || !parsed.every(validProblem)) {
       throw new Error("Saved progress has an unsupported format.");
     }
-    return parsed;
+    return parsed.map((problem) => ({
+      ...problem,
+      platform: problem.platform || "LeetCode"
+    }));
   } catch (error) {
     if (error instanceof SyntaxError) {
       console.error("Could not parse saved DSA progress.", error);
@@ -169,6 +174,21 @@ function persist() {
 
 function sortedProblems(problems) {
   return [...problems].sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
+}
+
+function problemSearchUrl(problem) {
+  const query = encodeURIComponent(problem.name);
+  switch (problem.platform || "LeetCode") {
+    case "GeeksforGeeks":
+      return `https://www.geeksforgeeks.org/?s=${query}`;
+    case "Codeforces":
+      return `https://codeforces.com/problemset?search=${query}`;
+    case "HackerRank":
+      return `https://www.google.com/search?q=${encodeURIComponent(`site:hackerrank.com/challenges ${problem.name}`)}`;
+    case "LeetCode":
+    default:
+      return `https://leetcode.com/problemset/?search=${query}`;
+  }
 }
 
 function dateLabel(isoDate, options = { month: "short", day: "numeric", year: "numeric" }) {
@@ -290,10 +310,10 @@ function renderPeriodList(problems, countElement, listElement, periodLabel) {
     <div class="period-problem">
       <span class="period-problem-mark">⌘</span>
       <span class="period-problem-copy">
-        <strong>${escapeHtml(problem.name)}</strong>
+        <a class="problem-platform-link" href="${problemSearchUrl(problem)}" target="_blank" rel="noopener noreferrer" title="Search ${escapeHtml(problem.platform || "LeetCode")} for ${escapeHtml(problem.name)}">${escapeHtml(problem.name)} ↗</a>
         <small>${escapeHtml(problem.topic)} · ${dateLabel(problem.date, { month: "short", day: "numeric" })}</small>
       </span>
-      <span class="difficulty ${problem.difficulty.toLowerCase()}">${problem.difficulty}</span>
+      <span class="period-problem-meta"><small>${escapeHtml(problem.platform || "LeetCode")}</small><span class="difficulty ${problem.difficulty.toLowerCase()}">${problem.difficulty}</span></span>
     </div>`).join("");
 
   if (sorted.length > visible.length) {
@@ -322,7 +342,8 @@ function renderProblemTable() {
   elements.noResults.hidden = state.problems.length === 0 || problems.length > 0;
   elements.table.innerHTML = problems.map((problem) => `
     <tr>
-      <td><div class="problem-cell"><span class="problem-mark">⌘</span><span>${escapeHtml(problem.name)}${problem.note ? `<span class="problem-note">${escapeHtml(problem.note)}</span>` : ""}</span></div></td>
+      <td><div class="problem-cell"><span class="problem-mark">⌘</span><span><a class="problem-platform-link" href="${problemSearchUrl(problem)}" target="_blank" rel="noopener noreferrer" title="Search ${escapeHtml(problem.platform || "LeetCode")} for ${escapeHtml(problem.name)}">${escapeHtml(problem.name)} ↗</a>${problem.note ? `<span class="problem-note">${escapeHtml(problem.note)}</span>` : ""}</span></div></td>
+      <td><span class="topic-tag">${escapeHtml(problem.platform || "LeetCode")}</span></td>
       <td><span class="topic-tag">${escapeHtml(problem.topic)}</span></td>
       <td><span class="difficulty ${problem.difficulty.toLowerCase()}">${problem.difficulty}</span></td>
       <td>${dateLabel(problem.date)}</td>
@@ -402,6 +423,7 @@ function saveProblem(event) {
   const problem = {
     id: globalThis.crypto && typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
     name: String(formData.get("name")).trim(),
+    platform: String(formData.get("platform")),
     topic: String(formData.get("topic")),
     difficulty: String(formData.get("difficulty")),
     date: String(formData.get("date")),

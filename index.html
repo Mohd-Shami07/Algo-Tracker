@@ -172,7 +172,7 @@
 
         <section class="panel recent-panel" id="problems">
           <div class="section-heading recent-heading"><div><p class="overline">THE WORK YOU PUT IN</p><h2>Problem log <span class="entry-count" id="entry-count">0</span></h2></div><div class="list-controls"><label class="sr-only" for="topic-filter">Filter by topic</label><select id="topic-filter"><option value="all">All topics</option></select><label class="sr-only" for="difficulty-filter">Filter by difficulty</label><select id="difficulty-filter"><option value="all">All levels</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select></div></div>
-          <div class="table-scroll"><table><thead><tr><th>PROBLEM</th><th>TOPIC</th><th>DIFFICULTY</th><th>DATE SOLVED</th><th>TIME</th></tr></thead><tbody id="problem-table"></tbody></table></div>
+          <div class="table-scroll"><table><thead><tr><th>PROBLEM</th><th>PLATFORM</th><th>TOPIC</th><th>DIFFICULTY</th><th>DATE SOLVED</th><th>TIME</th></tr></thead><tbody id="problem-table"></tbody></table></div>
           <div id="empty-state" class="empty-state" hidden><span>⌘</span><strong>No problems here. Yet.</strong><p>Add your first solved problem and start building momentum.</p><button class="button button-dark button-small" type="button" id="empty-add">Log your first problem <span>↗</span></button></div>
           <div id="no-filter-results" class="empty-state compact-empty" hidden>No problems match these filters.</div>
         </section>
@@ -186,8 +186,9 @@
         <div class="dialog-top"><div><p class="overline">ONE MORE REP</p><h2>Log a problem</h2></div><button class="close-dialog" type="button" id="close-dialog" aria-label="Close">×</button></div>
         <p class="dialog-copy">Solved something? Make sure it counts.</p>
         <label class="form-field">Problem name<input id="problem-name" name="name" type="text" maxlength="100" placeholder="e.g. Two Sum" required /></label>
-        <div class="form-row"><label class="form-field">Topic<select id="problem-topic" name="topic" required></select></label><label class="form-field">Difficulty<select id="problem-difficulty" name="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></label></div>
-        <div class="form-row"><label class="form-field">Date solved<input id="problem-date" name="date" type="date" required /></label><label class="form-field">Time spent (min)<input id="problem-time" name="time" type="number" min="1" max="1440" placeholder="Optional" /></label></div>
+        <div class="form-row"><label class="form-field">Platform<select id="problem-platform" name="platform"><option>LeetCode</option><option>GeeksforGeeks</option><option>Codeforces</option><option>HackerRank</option></select></label><label class="form-field">Topic<select id="problem-topic" name="topic" required></select></label></div>
+        <div class="form-row"><label class="form-field">Difficulty<select id="problem-difficulty" name="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></label><label class="form-field">Date solved<input id="problem-date" name="date" type="date" required /></label></div>
+        <label class="form-field">Time spent (min)<input id="problem-time" name="time" type="number" min="1" max="1440" placeholder="Optional" /></label>
         <label class="form-field">Key takeaway <span class="optional-label">OPTIONAL</span><textarea id="problem-note" name="note" maxlength="240" rows="2" placeholder="What pattern or insight did you learn?"></textarea></label>
         <div class="dialog-actions"><button class="button button-quiet" type="button" id="cancel-dialog">Cancel</button><button class="button button-dark" type="submit">Save problem <span>↗</span></button></div>
       </form>
