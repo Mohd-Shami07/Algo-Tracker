@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AlgoTrack LeetCode Sync</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">ALGOTRACK CONNECT</p>
+      <h1>LeetCode sync</h1>
+      <p class="description">When a problem page shows an accepted result, open AlgoTrack and add it to your log.</p>
+      <label for="app-url">Your AlgoTrack page URL</label>
+      <input id="app-url" type="text" placeholder="http://127.0.0.1:5500/index.html" autocomplete="url" />
+      <p class="hint">Use your local AlgoTrack page URL (for example, a local VS Code Live Server URL or a <code>file:///</code> URL). Avoid a hosted URL if you want your progress to stay on this device.</p>
+      <button id="save" type="button">Save page URL</button>
+      <p id="status" role="status" aria-live="polite"></p>
+      <p class="privacy">No LeetCode username, password, session cookie, or account data is collected. Only the accepted problem title and URL are sent to your configured AlgoTrack page.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -11,44 +11,49 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main id="login-screen" class="login-screen">
-      <section class="login-story">
+    <main class="login-screen" id="login-screen">
+      <div class="login-orb login-orb-one" aria-hidden="true"></div>
+      <div class="login-orb login-orb-two" aria-hidden="true"></div>
+      <div class="login-grid" aria-hidden="true"></div>
+      <section class="login-showcase">
         <a class="brand login-brand" href="#" aria-label="AlgoTrack home">
           <span class="brand-mark"><span></span><span></span><span></span></span>
           <span>algo<span class="brand-light">track</span></span>
         </a>
-        <div class="story-copy">
-          <p class="overline">YOUR NEXT CHAPTER STARTS HERE</p>
-          <h1>Get better<br />one problem<br /><span>at a time.</span></h1>
-          <p>A calmer way to build consistency, spot your patterns, and make your DSA practice count.</p>
+        <div class="login-showcase-copy">
+          <span class="login-eyebrow"><i></i> YOUR NEXT CHAPTER STARTS HERE</span>
+          <h1>Progress is<br />built <span>one solve</span><br />at a time.</h1>
+          <p>A calmer space to find your rhythm, connect the patterns, and make every practice session count.</p>
         </div>
-        <div class="story-art" aria-hidden="true">
-          <div class="story-orbit story-orbit-one"></div>
-          <div class="story-orbit story-orbit-two"></div>
-          <div class="story-sun">✳</div>
-          <span class="story-art-label">THINK · PRACTICE · REPEAT</span>
+        <div class="login-preview" aria-hidden="true">
+          <div class="preview-top"><span><i></i><i></i><i></i></span><small>YOUR MOMENTUM</small><b>↗</b></div>
+          <div class="preview-stat"><strong>24</strong><span>problems solved</span><em>+18% this week</em></div>
+          <div class="preview-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="preview-bottom"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+          <div class="preview-float"><span>✳</span><div><strong>7 day streak</strong><small>Showing up adds up.</small></div></div>
         </div>
-        <div class="story-footer"><span>MADE FOR THE LONG GAME</span><span>01 — 03</span></div>
+        <div class="login-showcase-footer"><span>THINK · PRACTICE · REPEAT</span><span>MADE FOR THE LONG GAME</span></div>
       </section>
-      <section class="login-side">
-        <div class="login-topline"><span>ALREADY ON YOUR WAY?</span><span class="login-status"><i></i> PERSONAL WORKSPACE</span></div>
+      <section class="login-panel">
+        <div class="login-panel-top"><span>YOUR PERSONAL WORKSPACE</span><span class="preview-badge"><i></i> PREVIEW MODE</span></div>
         <div class="login-card">
           <div class="login-card-icon">↗</div>
-          <p class="overline">WELCOME BACK</p>
+          <p class="login-card-overline">WELCOME TO ALGOTRACK</p>
           <h2>Pick up where<br />you left off.</h2>
-          <p class="login-intro">Sign in to open your personal DSA progress dashboard.</p>
-          <form id="login-form" class="login-form">
+          <p class="login-intro">Step into your personal space for better DSA practice.</p>
+          <form id="preview-login-form" class="login-form">
             <label class="login-field">Email address
-              <input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <input id="preview-email" type="email" autocomplete="off" placeholder="you@example.com" aria-label="Email address (preview only)" />
             </label>
             <label class="login-field">Password
-              <span class="password-wrap"><input id="login-password" name="password" type="password" autocomplete="new-password" placeholder="Enter any password" required /><button id="toggle-password" class="password-toggle" type="button" aria-label="Show password">Show</button></span>
+              <span class="password-wrap"><input id="preview-password" type="password" autocomplete="off" placeholder="Enter any text to preview" aria-label="Password (preview only)" /><button id="preview-toggle-password" class="password-toggle" type="button" aria-label="Show password">Show</button></span>
             </label>
-            <button class="button button-dark login-submit" type="submit">Continue to tracker <span>↗</span></button>
+            <button class="button button-dark login-submit" type="submit">Enter your workspace <span>↗</span></button>
           </form>
-          <div class="demo-notice"><span>✳</span><p><strong>Demo sign-in</strong><br />Any valid email and password will work. This demo doesn’t create or secure accounts; your progress stays in this browser.</p></div>
+          <p class="preview-disclaimer"><span>✳</span><span><strong>Preview screen only.</strong> No account is needed. The fields are not checked, stored, or sent anywhere.</span></p>
+          <div class="login-trust-row"><span>◇ YOUR PROGRESS STAYS ON THIS DEVICE</span><span>NO ACCOUNT REQUIRED</span></div>
         </div>
-        <div class="login-footnote"><span>NO ACCOUNT NEEDED TO TRY IT</span><span>YOUR PROGRESS, YOUR PACE.</span></div>
+        <div class="login-panel-footer"><span>YOUR PRACTICE, YOUR PACE.</span><span>BUILT FOR THE LONG GAME.</span></div>
       </section>
     </main>
 
@@ -64,6 +69,7 @@
           <a class="nav-item active" href="#overview"><span class="nav-icon">⌂</span> Overview</a>
           <a class="nav-item" href="#problems"><span class="nav-icon">▤</span> Problem log</a>
           <a class="nav-item" href="#topics"><span class="nav-icon">◉</span> Topics</a>
+          <a class="nav-item" href="#platforms"><span class="nav-icon">↗</span> Profiles</a>
         </nav>
 
         <div class="sidebar-label plan-label">YOUR PLAN</div>
@@ -80,7 +86,6 @@
         <div class="profile">
           <div class="avatar">D</div>
           <div class="profile-copy"><strong id="profile-name">DSA learner</strong><span>Keep it up ✨</span></div>
-          <button class="profile-menu" id="sign-out" type="button" aria-label="Sign out" title="Sign out">↪</button>
         </div>
       </aside>
 
@@ -121,6 +126,31 @@
             <div class="difficulty-bar"><span class="easy-segment"></span><span class="medium-segment"></span><span class="hard-segment"></span></div>
             <div class="stat-foot">A balanced mix builds range.</div>
           </article>
+        </section>
+
+        <section class="panel profiles-section" id="platforms" aria-labelledby="profiles-title">
+          <div class="section-heading">
+            <div><p class="overline">YOUR CODING PRESENCE</p><h2 id="profiles-title">Platform profiles</h2></div>
+            <span class="heading-note">SAVED ON THIS DEVICE</span>
+          </div>
+          <p class="profiles-intro">Sync public solved-question lists from LeetCode, Codeforces, GeeksforGeeks, and HackerRank. CodeChef sync shows its public profile summary because it does not expose a reliable public solved-question list.</p>
+          <form id="profile-form" class="profile-form">
+            <label class="form-field">Platform name<input id="profile-platform-name" name="platformName" type="text" list="profile-platform-options" maxlength="40" placeholder="Choose or type a platform" required /></label>
+            <datalist id="profile-platform-options">
+              <option value="LeetCode"></option>
+              <option value="Codeforces"></option>
+              <option value="GeeksforGeeks"></option>
+              <option value="HackerRank"></option>
+              <option value="CodeChef"></option>
+              <option value="AtCoder"></option>
+              <option value="Topcoder"></option>
+              <option value="SPOJ"></option>
+              <option value="CSES"></option>
+            </datalist>
+            <label class="form-field">Profile URL<input id="profile-url" name="profileUrl" type="url" placeholder="https://leetcode.com/u/yourname" required /></label>
+            <button class="button button-dark profile-add-button" type="submit"><span>＋</span> Add profile</button>
+          </form>
+          <div id="profile-cards" class="profile-cards" aria-live="polite"></div>
         </section>
 
         <section class="coach-card" aria-labelledby="coach-title">
@@ -172,7 +202,7 @@
 
         <section class="panel recent-panel" id="problems">
           <div class="section-heading recent-heading"><div><p class="overline">THE WORK YOU PUT IN</p><h2>Problem log <span class="entry-count" id="entry-count">0</span></h2></div><div class="list-controls"><label class="sr-only" for="topic-filter">Filter by topic</label><select id="topic-filter"><option value="all">All topics</option></select><label class="sr-only" for="difficulty-filter">Filter by difficulty</label><select id="difficulty-filter"><option value="all">All levels</option><option value="Easy">Easy</option><option value="Medium">Medium</option><option value="Hard">Hard</option></select></div></div>
-          <div class="table-scroll"><table><thead><tr><th>PROBLEM</th><th>PLATFORM</th><th>TOPIC</th><th>DIFFICULTY</th><th>DATE SOLVED</th><th>TIME</th></tr></thead><tbody id="problem-table"></tbody></table></div>
+          <div class="table-scroll"><table><thead><tr><th>PROBLEM</th><th>PLATFORM</th><th>TOPIC</th><th>DIFFICULTY</th><th>DATE SOLVED</th><th>TIME</th><th>ACTION</th></tr></thead><tbody id="problem-table"></tbody></table></div>
           <div id="empty-state" class="empty-state" hidden><span>⌘</span><strong>No problems here. Yet.</strong><p>Add your first solved problem and start building momentum.</p><button class="button button-dark button-small" type="button" id="empty-add">Log your first problem <span>↗</span></button></div>
           <div id="no-filter-results" class="empty-state compact-empty" hidden>No problems match these filters.</div>
         </section>
@@ -186,7 +216,20 @@
         <div class="dialog-top"><div><p class="overline">ONE MORE REP</p><h2>Log a problem</h2></div><button class="close-dialog" type="button" id="close-dialog" aria-label="Close">×</button></div>
         <p class="dialog-copy">Solved something? Make sure it counts.</p>
         <label class="form-field">Problem name<input id="problem-name" name="name" type="text" maxlength="100" placeholder="e.g. Two Sum" required /></label>
-        <div class="form-row"><label class="form-field">Platform<select id="problem-platform" name="platform"><option>LeetCode</option><option>GeeksforGeeks</option><option>Codeforces</option><option>HackerRank</option></select></label><label class="form-field">Topic<select id="problem-topic" name="topic" required></select></label></div>
+        <label class="form-field">Direct problem URL<input id="problem-url" name="problemUrl" type="url" placeholder="Paste the problem page URL" required /></label>
+        <div class="auto-import-box">
+          <button id="auto-import-current-page" class="button button-quiet auto-import-button" type="button">Auto-fill from current coding page</button>
+          <button id="copy-bookmarklet" class="button button-quiet auto-import-button" type="button">Copy bookmarklet</button>
+        </div>
+        <div class="form-row"><div class="form-field"><label for="problem-platform">Platform</label><div class="platform-select-row"><select id="problem-platform" name="platform"></select></div><button id="show-add-platform" class="button button-quiet platform-add-button" type="button" aria-expanded="false" aria-controls="add-platform-panel">＋ Add a platform</button></div><label class="form-field">Topic<select id="problem-topic" name="topic" required></select></label></div>
+        <fieldset id="add-platform-panel" class="add-platform-panel" hidden>
+          <legend>Add a platform</legend>
+          <div>
+            <label class="form-field">Platform name<input id="new-platform-name" type="text" maxlength="40" placeholder="e.g. AtCoder" /></label>
+            <label class="form-field">Platform website<input id="new-platform-url" type="url" placeholder="https://atcoder.jp" /></label>
+            <button id="add-platform-submit" class="button button-quiet" type="button">Add platform</button>
+          </div>
+        </fieldset>
         <div class="form-row"><label class="form-field">Difficulty<select id="problem-difficulty" name="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></label><label class="form-field">Date solved<input id="problem-date" name="date" type="date" required /></label></div>
         <label class="form-field">Time spent (min)<input id="problem-time" name="time" type="number" min="1" max="1440" placeholder="Optional" /></label>
         <label class="form-field">Key takeaway <span class="optional-label">OPTIONAL</span><textarea id="problem-note" name="note" maxlength="240" rows="2" placeholder="What pattern or insight did you learn?"></textarea></label>
